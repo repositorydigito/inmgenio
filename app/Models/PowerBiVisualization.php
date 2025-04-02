@@ -27,6 +27,7 @@ class PowerBiVisualization extends PowerBiDashboard
         'embed_url',
         'description',
         'is_active',
+        'permissions',
     ];
 
     /**
@@ -36,7 +37,19 @@ class PowerBiVisualization extends PowerBiDashboard
      */
     protected $casts = [
         'is_active' => 'boolean',
+        'permissions' => 'json',
     ];
+
+    /**
+     * Scope para obtener solo dashboards activos.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->where('is_active', true);
+    }
 
     /**
      * Scope para obtener visualizaciones por tipo.

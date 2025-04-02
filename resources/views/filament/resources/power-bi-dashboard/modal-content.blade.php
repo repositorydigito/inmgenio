@@ -1,4 +1,4 @@
-<div class="h-full flex flex-col bg-gray-50">
+<div class="h-full flex flex-col bg-gray-50 h-screen">
     <div class="p-4 bg-white shadow-sm">
         <div class="flex items-center space-x-2">
             <div class="p-2 bg-primary-100 rounded-lg">

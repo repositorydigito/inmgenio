@@ -99,7 +99,7 @@ class PowerBiDashboardResource extends Resource
                     ))
                     ->modalSubmitAction(false)
                     ->modalCancelActionLabel('Cerrar')
-                    ->modalWidth('full')
+                    ->modalWidth('7xl')
                     ->extraAttributes([
                         'class' => '!max-w-full !h-[90vh]'
                     ]),

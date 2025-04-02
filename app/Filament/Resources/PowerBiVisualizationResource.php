@@ -77,13 +77,6 @@ class PowerBiVisualizationResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                Tables\Filters\TernaryFilter::make('is_active')
-                    ->label('Estado')
-                    ->placeholder('Todos')
-                    ->trueLabel('Activos')
-                    ->falseLabel('Inactivos'),
-            ])
             ->actions([
                 Tables\Actions\Action::make('view')
                     ->label('Ver')
@@ -94,7 +87,7 @@ class PowerBiVisualizationResource extends Resource
                     ))
                     ->modalSubmitAction(false)
                     ->modalCancelActionLabel('Cerrar')
-                    ->modalWidth('full')
+                    ->modalWidth('7xl')
                     ->extraAttributes([
                         'class' => '!max-w-full !h-[90vh]'
                     ])
@@ -113,7 +106,8 @@ class PowerBiVisualizationResource extends Resource
             ])
             ->defaultSort('created_at', 'desc')
             ->striped()
-            ->poll('10s');
+            ->poll('10s')
+            ->modifyQueryUsing(fn (Builder $query) => $query->active());
     }
 
     public static function getRelations(): array

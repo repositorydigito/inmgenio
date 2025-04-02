@@ -60,6 +60,9 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
+                FilamentEditProfilePlugin::make()
+                ->shouldShowDeleteAccountForm(false)
+                ->setIcon('heroicon-o-user'),
             ])
             ->plugin(\TomatoPHP\FilamentUsers\FilamentUsersPlugin::make());
     }
