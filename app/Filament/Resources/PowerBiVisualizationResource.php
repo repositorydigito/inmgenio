@@ -62,25 +62,41 @@ class PowerBiVisualizationResource extends Resource
                     ->label('Título')
                     ->searchable()
                     ->sortable()
-                    ->icon('heroicon-o-document-text')
+                    ->size('lg')
+                    ->weight('bold')
+                    ->color('primary')
+                    ->icon('heroicon-o-presentation-chart-bar')
                     ->description(fn (PowerBiVisualization $record): string => $record->description ?? 'Sin descripción'),
                 Tables\Columns\IconColumn::make('is_active')
                     ->label('Estado')
                     ->boolean()
+                    ->size('lg')
                     ->trueIcon('heroicon-o-check-circle')
                     ->falseIcon('heroicon-o-x-circle')
                     ->trueColor('success')
-                    ->falseColor('danger'),
+                    ->falseColor('danger')
+                    ->alignCenter(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Fecha de Creación')
                     ->dateTime('d/m/Y H:i')
                     ->sortable()
+                    ->icon('heroicon-o-calendar')
+                    ->alignEnd(),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Última Actualización')
+                    ->dateTime('d/m/Y H:i')
+                    ->sortable()
+                    ->icon('heroicon-o-clock')
+                    ->alignEnd()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->actions([
                 Tables\Actions\Action::make('view')
                     ->label('Ver')
                     ->icon('heroicon-o-eye')
+                    ->color('primary')
+                    ->tooltip('Ver visualización')
+                    ->modalHeading(fn (PowerBiVisualization $record): string => "Visualización: {$record->title}")
                     ->modalContent(fn (PowerBiVisualization $record): View => view(
                         'filament.resources.power-bi-visualization.modal-content',
                         ['record' => $record]
@@ -91,18 +107,6 @@ class PowerBiVisualizationResource extends Resource
                     ->extraAttributes([
                         'class' => '!max-w-full !h-[90vh]'
                     ])
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make()
-                        ->label('Eliminar Seleccionados')
-                        ->icon('heroicon-o-trash')
-                        ->requiresConfirmation()
-                        ->modalHeading('¿Eliminar visualizaciones seleccionadas?')
-                        ->modalDescription('Esta acción no se puede deshacer.')
-                        ->modalSubmitActionLabel('Sí, eliminar')
-                        ->modalCancelActionLabel('Cancelar'),
-                ]),
             ])
             ->defaultSort('created_at', 'desc')
             ->striped()
