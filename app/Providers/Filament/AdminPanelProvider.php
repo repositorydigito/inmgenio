@@ -18,7 +18,6 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
-use Solutionforest\FilamentLoginScreen\Filament\Pages\Auth\Themes\Theme1\LoginScreenPage as LoginScreenPage;
 
 
 class AdminPanelProvider extends PanelProvider
@@ -29,8 +28,8 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->login(LoginScreenPage::class)
-            
+            ->login()
+          
             ->brandName('Inmgenio')
             ->brandLogo(asset('images/inmgenioLight.png'))
             ->darkModeBrandLogo(asset('images/inmgenioDark.png')) // Logo para modo oscuro
