@@ -1,4 +1,4 @@
-<div class="h-full flex flex-col bg-gray-50 dark:bg-gray-900 h-screen">
+<div class="h-full flex flex-col bg-gray-50 dark:bg-gray-900 h-screen" style="height: 100vh; overflow: hidden;">
     <div class="p-4 bg-white dark:bg-gray-800 shadow-sm rounded-t-lg border-b dark:border-gray-700">
         <div class="flex items-center space-x-3">
             <div class="p-3 bg-primary-100 dark:bg-primary-950 rounded-lg">
@@ -15,15 +15,16 @@
         </div>
     </div>
 
-    <div class="flex-1 p-4 bg-gray-50 dark:bg-gray-900">
-        <div class="h-full bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden border dark:border-gray-700">
+    <div class="flex-1 p-4 bg-gray-50 dark:bg-gray-900 overflow-hidden">
+        <div class="h-full w-full bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden border dark:border-gray-700" style="min-height: 500px;">
             <iframe 
-                src="{{ $record->embed_url }}" 
+                src="{{ route('powerbi.viz.proxy', ['id' => $record->id]) }}" 
                 frameborder="0" 
                 allowfullscreen 
                 class="w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                style="border: none;"
+                style="border: none; width: 100%; height: 100%;"
+                scrolling="no"
             ></iframe>
         </div>
     </div>

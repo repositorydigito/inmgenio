@@ -1,4 +1,4 @@
-<div class="h-full flex flex-col bg-gray-50 h-screen">
+<div class="h-full flex flex-col bg-gray-50 h-screen" style="height: 100vh; overflow: hidden;">
     <div class="p-4 bg-white shadow-sm">
         <div class="flex items-center space-x-2">
             <div class="p-2 bg-primary-100 rounded-lg">
@@ -23,15 +23,16 @@
         </div>
     </div>
 
-    <div class="flex-1 p-4">
-        <div class="h-full bg-white rounded-lg shadow-sm overflow-hidden">
+    <div class="flex-1 p-4 overflow-hidden">
+        <div class="h-full w-full bg-white rounded-lg shadow-sm overflow-hidden" style="min-height: 500px;">
             <iframe 
-                src="{{ $record->embed_url }}" 
+                src="{{ route('powerbi.proxy', ['id' => $record->id]) }}" 
                 frameborder="0" 
                 allowfullscreen 
                 class="w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                style="border: none;"
+                style="border: none; width: 100%; height: 100%;"
+                scrolling="no"
             ></iframe>
         </div>
     </div>
